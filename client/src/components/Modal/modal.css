@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    transition: 0s;
+}
+
+.modal.active {
+    transition: 0.5s;
+  transform: scale(1);
+}
+
+.modal__content {
+    padding: 30px;
+    border-radius: 16px;
+    background-color: #fff;
+    height: 700px;
+    width: 540px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: 0;
+}
+
+.modal__name {
+    font-family: Inter,sans-serif;
+    font-size: 52px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 63px;
+    margin-bottom: 15px;
+}
+
+.modal__score {
+  margin-bottom: 15px;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.modal__bio {
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    Line-height: 100%;
+    letter-spacing: 0;
+    text-align: left;
+    margin-bottom: 130px;
+    color: #00000080;
+}
+
+.modal__button {
+    height: 40px;
+    width: 480px;
+    border-radius: 8px;
+    Effect: Drop shadow;
+    Offset: 0, 16px;
+    color: rgba(0, 0, 0, 0.60)
+}
