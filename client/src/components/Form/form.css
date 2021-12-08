@@ -1,0 +1,24 @@
+.form {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1040px;
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    height: 72px;
+    border: 1px solid silver;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.form__input {
+    border: none;
+}
+
+.form__input:hover {
+    border: none;
+    background: transparent;
+}

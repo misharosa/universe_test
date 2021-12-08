@@ -1,0 +1,18 @@
+.player {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    border-radius: 5px;
+    width: 1040px;
+    height: 72px;
+    border: 1px solid silver;
+}
+
+.img {
+    height: 40px;
+    border-radius: 50%;
+}

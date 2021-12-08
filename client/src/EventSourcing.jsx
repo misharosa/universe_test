@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ModalContent } from "./components/Modal/Modal";
+import {PlayerList} from "./components/PlayerList/PlayerList";
+import {Form} from "./components/Form/Form";
 
 export const EventSourcing = () => {
     const [players, setPlayers] = useState([])
@@ -65,48 +67,20 @@ export const EventSourcing = () => {
         <>
         <h1 className="title">Score board</h1>
         <div className="center">
-            <form className="form alert-light text-light">
-                <label htmlFor="">
-                    <input
-                        placeholder="Player’s name"
-                        className="form__input"
-                        type="text"
-                        value={value}
-                        onChange={(e) => {
-                            setValue(e.target.value)
-                        }}
-                    />
-                </label>
-
-                <div className="input-group-btn">
-                    <select onChange={e => setSelectedSort(e.target.value)} className="btn btn-default dropdown-toggle form__select">
-                        <option value="score">Score</option>
-                        <option value="name">Name</option>
-                    </select>
-                </div>
-            </form>
+            <Form
+                value={value}
+                setValue={setValue}
+                setSelectedSort={setSelectedSort}
+            />
             <div className="list__player">
-                {players.map((player) =>
-                <div
-                    onClick={() => {
-                        findPlayerById(player.score)
-                        setModalActive(true)
-                    }}
-                    className="alert alert-light text-dark player"
-                    key={player.score}
-                >
-                    <span>
-                        <img className="img" src={`${player.avatar}`} alt="img"/>
-                        {' '}
-                        <span>{`name : ${player.name}`}</span>
-                    </span>
-                    <span>
-                        {`score: ${player.score}`}
-                    </span>
-                </div>
-                )}
+            <PlayerList
+                players={players}
+                findPlayerById={findPlayerById}
+                setActive={setModalActive}
+            />
                 <ModalContent
-                    active={modalActive} setActive={setModalActive}
+                    active={modalActive}
+                    setActive={setModalActive}
                     playerById={playerByID}
                 />
             </div>

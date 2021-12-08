@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
 .modal {
     height: 100vh;
     width: 100vw;
@@ -13,13 +9,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
     transition: 0s;
 }
 
 .modal.active {
     transition: 0.5s;
-  transform: scale(1);
+    opacity: 1;
+    pointer-events: all;
 }
 
 .modal__content {
@@ -81,5 +79,10 @@
     border-radius: 8px;
     Effect: Drop shadow;
     Offset: 0, 16px;
-    color: rgba(0, 0, 0, 0.60)
+    color: rgba(0, 0, 0, 0.60);
+}
+
+.modal__button:hover {
+    background: linear-gradient(0deg, rgba(221, 159, 66, 0.12), rgba(200, 159, 66, 0.12)),
+    linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
