@@ -12,6 +12,12 @@
     border: 1px solid silver;
 }
 
+.player:hover {
+    background: linear-gradient(0deg, rgba(221, 159, 66, 0.12), rgba(221, 159, 66, 0.12)),
+    linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    transition: 0.2s;
+}
+
 @media (max-width: 375px) {
     .player {
         width: 100%;
@@ -20,6 +26,7 @@
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
+        cursor: pointer;
     }
 }
 

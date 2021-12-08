@@ -34,8 +34,6 @@
     letter-spacing: 0;
     padding: 60px 232px 15px 15px;
   }
-
-
 }
 
 .modal {
@@ -62,4 +60,17 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+}
+
+@media (max-width: 375px) {
+  .loading {
+    box-sizing: border-box;
+    width: 100%;
+    font-family: Inter,sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0;
+  }
 }
