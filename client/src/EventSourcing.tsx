@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import { ModalContent } from "./components/Modal/Modal";
-import {PlayerList} from "./components/PlayerList/PlayerList";
-import {Form} from "./components/Form/Form";
+import { PlayerList } from "./components/PlayerList/PlayerList";
+import { Form } from "./components/Form/Form";
+import { IPlayer } from "./components/type/type";
 
-export const EventSourcing = () => {
-    const [players, setPlayers] = useState([])
+export const EventSourcing:React.FC<any> = () => {
+    const [players, setPlayers] = useState<IPlayer[]>([])
     const [value, setValue] = useState('')
     const [modalActive, setModalActive] = useState(false)
     const [playerByID, setPlayerById] = useState({})
@@ -18,36 +19,44 @@ export const EventSourcing = () => {
             const eventSource = new EventSource(`http://localhost:5000/`)
             eventSource.onmessage = await function (event) {
                 const player = JSON.parse(event.data)
-                switch (selectedSort) {
-                    case 'score':
-                 setPlayers(prev => [...prev, player].sort(function(firstScore, secondScore){
-                    if(firstScore[selectedSort] > secondScore[selectedSort]) { return -1; }
-                    if(firstScore[selectedSort] < secondScore[selectedSort]) { return 1; }
-                    return 0
-                }))
-                        break;
-
-                    case 'name':
-                        setPlayers(prev => [...prev, player].sort(function(firstPlayer, secondPlayer){
-                            if(firstPlayer[selectedSort].length > secondPlayer[selectedSort].length) { return -1; }
-                            if(firstPlayer[selectedSort].length < secondPlayer[selectedSort].length) { return 1; }
-                            return 0
-                        }))
-                        break;
-
-                    default:
-                        throw new Error('Уупс!')
-                }
+                setPlayers(prev => [...prev, player])
         }
     }
 
-    useEffect(() => {
-        const filterPlayer = [...players].filter(player => (player.name.toLowerCase()).includes((value).toLowerCase()))
-        setPlayers([...filterPlayer])
-    },[value])
+    const sortPlayers = useMemo(() => {
+        switch (selectedSort) {
+            case 'score':
+               return players.sort(function(firstScore, secondScore){
+                    if(firstScore[selectedSort] > secondScore[selectedSort]) { return -1; }
+                    if(firstScore[selectedSort] < secondScore[selectedSort]) { return 1; }
+                    return 0
+                })
 
-    const findPlayerById = (playerId) => {
-        const findPlayer = players.find(player => player.score === playerId)
+            case 'nameLength':
+                return players.sort(function(firstPlayer, secondPlayer){
+                    if(firstPlayer['name'].length > secondPlayer['name'].length) { return -1; }
+                    if(firstPlayer['name'].length < secondPlayer['name'].length) { return 1; }
+                    return 0
+                })
+
+            case 'name':
+                return players.sort(function(firstPlayer, secondPlayer){
+                    if(firstPlayer[selectedSort] < secondPlayer[selectedSort]) { return -1; }
+                    if(firstPlayer[selectedSort] > secondPlayer[selectedSort]) { return 1; }
+                    return 0
+                })
+
+            default:
+                return players
+        }
+    }, [players, selectedSort])
+
+    const filteredPlayers = useMemo(() => {
+        return sortPlayers.filter(player => (player.name.toLowerCase()).includes((value).toLowerCase()))
+    },[sortPlayers, value]);
+
+    const findPlayerById = (playerId:number) => {
+        const findPlayer:any = players.find(player => player.score === playerId)
         setPlayerById(findPlayer)
     }
 
@@ -74,7 +83,7 @@ export const EventSourcing = () => {
             />
             <div className="list__player">
             <PlayerList
-                players={players}
+                players={filteredPlayers}
                 findPlayerById={findPlayerById}
                 setActive={setModalActive}
             />

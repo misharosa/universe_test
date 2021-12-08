@@ -22,6 +22,22 @@
   padding-left: 200px;
 }
 
+@media (max-width: 375px) {
+  .title {
+    box-sizing: border-box;
+    width: 300px;
+    font-family: Inter,sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0;
+    padding: 60px 232px 15px 15px;
+  }
+
+
+}
+
 .modal {
   height: 100px;
   width: 100px;

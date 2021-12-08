@@ -1,7 +1,8 @@
 import React from "react";
 import './Players.css'
+import { PropsPlayerList } from "../type/type";
 
-export const PlayerList = ({ players, setActive, findPlayerById }) => {
+export const PlayerList:React.FC<PropsPlayerList> = ({ players, setActive, findPlayerById }) => {
     return (
         <div className="list__player">
             {players.map((player) =>
@@ -16,7 +17,7 @@ export const PlayerList = ({ players, setActive, findPlayerById }) => {
                     <span>
                         <img className="img" src={`${player.avatar}`} alt="img"/>
                         {' '}
-                        <span>{`name : ${player.name}`}</span>
+                        <span>{`${player.name}`}</span>
                     </span>
                     <span>
                         {`score: ${player.score}`}

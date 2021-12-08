@@ -2,6 +2,7 @@
     height: 100vh;
     width: 100vw;
     background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(16px);
     position: fixed;
     top: 0;
     left: 0;
@@ -12,6 +13,18 @@
     opacity: 0;
     pointer-events: none;
     transition: 0s;
+}
+
+@media (max-width: 375px) {
+    .modal {
+        width: 100%;
+        font-family: Inter,sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        padding: 10px;
+    }
 }
 
 .modal.active {
@@ -29,15 +42,38 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
+@media (max-width: 375px) {
+    .modal__content {
+        width: 100%;
+        font-family: Inter,sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        padding: 10px;
+    }
+}
+
 .modal_img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    margin: 0;
+    position: static;
+    width: 200px;
+    height: 200px;
+    left: 140px;
+    top: 0;
+
+    border: 6px solid #DD9F42;
+    box-sizing: border-box;
+    border-radius: 240px;
+
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 15px 0;
 }
 
 .modal__name {
@@ -69,7 +105,7 @@
     Line-height: 100%;
     letter-spacing: 0;
     text-align: left;
-    margin-bottom: 130px;
+    /*margin-bottom: 130px;*/
     color: #00000080;
 }
 
@@ -80,6 +116,12 @@
     Effect: Drop shadow;
     Offset: 0, 16px;
     color: rgba(0, 0, 0, 0.60);
+}
+
+@media (max-width: 375px) {
+    .modal__button {
+        width: 100%;
+    }
 }
 
 .modal__button:hover {
